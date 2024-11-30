@@ -5,4 +5,4 @@ so i made my own. Its intended to be easy to use, simple, and customizable.
 
 # current progress
 
-nothing lol
+some basic argument detection
