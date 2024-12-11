@@ -5,4 +5,4 @@ so i made my own. Its *intended* to be easy to use, simple, and customizable.
 
 # current progress
 
-Second hand and some basic argument detection
+currently its just missing some polish, maybe a digital function and time left being printed
