@@ -2,7 +2,6 @@
 #include <unistd.h>
 #include <string.h>
 #include <math.h>
-#include <stdlib.h>
 
 #define secondHandChar '|'
 #define minuteHandChar '='
@@ -128,7 +127,7 @@ void getTimeFromSeconds(int time, float* hours, float* minutes, float* seconds) 
   //simply floor(min/60) (60 minutes an a single hour)
   *seconds = time % 60;
   *minutes = time / 60.0f;
-  *hours = time / 3600.0f;
+  *hours = *minutes / 60.0f;
   return;
   //splendid
 }
@@ -221,7 +220,7 @@ int main(int argc, char *argv[]) {
     argc--;
   }
 
-  if(time == -1) {
+  if(time == -1 && argc != 1) {
     puts("Please provide a time argument (-s SECONDS)");
     goto ret;
   }
@@ -251,7 +250,7 @@ int main(int argc, char *argv[]) {
     float seconds, minutes, hours;
     getTimeFromSeconds(time, &hours, &minutes, &seconds);
 
-    clear();
+    erase();
 
     if(display[0])
       drawHand(seconds/60.0f * twopi - halfPi, secRadius, secondHandChar);
