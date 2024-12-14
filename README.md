@@ -8,7 +8,6 @@ so i made my own. Its *intended* to be easy to use, simple, and customizable.
 currently its just missing some polish, maybe a digital function and time left being printed
 
 # how to compile and run
-if you have make installed, *and you should*
 just type in make in terminal and an excecutable should pop out
 
 excecute tui-timer after compiling, its in the directory
@@ -21,4 +20,4 @@ make
 
 # dependancies
 
-ncurses and to be on linux
+ncurses, make and to be on linux
