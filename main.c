@@ -169,6 +169,7 @@ int main(int argc, char *argv[]) {
   if(argc == 1) {
     printf("Please provide a flag, -s [SECONDS] for a simple seconds timer\n");
     printf("./tui-timer -h for a list of flags and what they do\n");
+    return 1;
   }
 
   argc--;
