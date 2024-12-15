@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <math.h>
+#include <time.h>
 
 #define secondHandChar '|'
 #define minuteHandChar '='
@@ -127,7 +128,7 @@ void getTimeFromSeconds(int time, float* hours, float* minutes, float* seconds) 
   //simply floor(min/60) (60 minutes an a single hour)
   *seconds = time % 60;
   *minutes = time / 60.0f;
-  *hours = *minutes / 60.0f;
+  *hours = time / 3600.0f;
   return;
   //splendid
 }
@@ -165,19 +166,22 @@ int getTimeFromTimeChar(char* inChar, float* hours, float* minutes, float* secon
 
 int main(int argc, char *argv[]) {
 
+  if(argc == 1) {
+    printf("Please provide a flag, -s [SECONDS] for a simple seconds timer\n");
+    printf("./tui-timer -h for a list of flags and what they do\n");
+  }
+
   argc--;
   int time = -1;
   bool fancyShmancy = true;
   bool display[6] = {true, true, true, true, true, true};
-  if(argc == 0) {
-    puts("Error: no input for a list of commands excecute with modifier -h");
-  }
   while(argc > 0) { // have it > 0 to exclude excecution
     char* currentItem = argv[argc];
     int itemSize = strlen(currentItem);
     // argument logic:
     if(getStringIsSequence(currentItem, "-h")) {
       puts("this is a timer written in c intended to be customizable!");
+      puts("by default, this will show the actual time");
       puts("commands:");
       puts("-h                         Displays this message");
       puts("-s                         Sets the timer length (seconds)");
@@ -220,8 +224,7 @@ int main(int argc, char *argv[]) {
     argc--;
   }
 
-  if(time == -1 && argc != 1) {
-    puts("Please provide a time argument (-s SECONDS)");
+  if(time == -1) {
     goto ret;
   }
 
@@ -274,7 +277,6 @@ int main(int argc, char *argv[]) {
       digitCount += log10(hours);
       halfX -= digitCount;
       wmove(stdscr, halfY, halfX);
-      //printw("%d:%d:%d", (int)hours, (int)minutes, (int)seconds);
     }
     refresh();
     for(int i = 0; i < 10; i++) {
@@ -283,7 +285,6 @@ int main(int argc, char *argv[]) {
         goto end;
     }
   }
-
 notFancyLoop:
   int halfX, halfY;
   halfX = (maxX >> 1) - 1;
