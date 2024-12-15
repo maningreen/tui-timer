@@ -2,7 +2,6 @@
 #include <unistd.h>
 #include <string.h>
 #include <math.h>
-#include <time.h>
 
 #define secondHandChar '|'
 #define minuteHandChar '='
@@ -128,7 +127,7 @@ void getTimeFromSeconds(int time, float* hours, float* minutes, float* seconds) 
   //simply floor(min/60) (60 minutes an a single hour)
   *seconds = time % 60;
   *minutes = time / 60.0f;
-  *hours = time / 3600.0f;
+  *hours = 0;
   return;
   //splendid
 }
@@ -235,7 +234,7 @@ int main(int argc, char *argv[]) {
   nodelay(stdscr, true);
 
   int maxX, maxY;
-  getmaxyx(stdscr, maxX, maxY);
+  getmaxyx(stdscr, maxY, maxX);
 
   float secRadius, minRadius, hourRadius, circleRadius, numRadius, timeOffset;
   circleRadius = min(maxX, maxY)/4.0f * 3.0f;
@@ -248,10 +247,10 @@ int main(int argc, char *argv[]) {
   if(!fancyShmancy)
     goto notFancyLoop;
 
+  float seconds, minutes, hours;
   while(time > 0) {
     time--;
 
-    float seconds, minutes, hours;
     getTimeFromSeconds(time, &hours, &minutes, &seconds);
 
     erase();
@@ -268,16 +267,13 @@ int main(int argc, char *argv[]) {
       printNum(numRadius);
     if(display[5]) {
       //print the time (for realzies)
-      int halfX, halfY;
-      halfX = maxX >> 1;
-      halfY = maxY >> 1; // divide by two
 
       int digitCount = 0;
-      digitCount += log10(seconds) + 1;   //account for :
-      digitCount += log10(minutes) + 1;
-      digitCount += log10(hours);
-      halfX -= digitCount;
-      wmove(stdscr, halfY, halfX);
+      digitCount += minutes > 0 ? ceil(log10((int)minutes)) : 1;
+      digitCount += hours > 0 ? ceil(log10((int)hours)) : 1;
+      digitCount += seconds > 0 ? ceil(log10((int)seconds)) : 1;
+      wmove(stdscr, maxY - 1, (maxX - digitCount)>> 1);
+      printw("%d:%d:%d", (int)hours, (int)minutes, (int)seconds);
     }
     refresh();
     for(int i = 0; i < 10; i++) {
