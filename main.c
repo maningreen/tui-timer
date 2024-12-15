@@ -193,7 +193,7 @@ int main(int argc, char *argv[]) {
       puts("-c                         Displays the clock without the hour hand");
       puts("-d                         Displays the clock without the outer circle");
       puts("-e                         Displays the clock without the numbers on the inside");
-      puts("-f                         Displays the clock withput the time printed (wip)");
+      puts("-f                         Displays the clock without the time printed");
       return 0;
     } else if(getStringIsSequence(currentItem, "-t")) {
       char* timeChar = argv[argc + 1];
