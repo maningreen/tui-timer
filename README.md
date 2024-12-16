@@ -21,7 +21,7 @@ make
 # dependancies
 
 you need:
-libnotify
+libnotify (for notifications when timer ends)
 ncurses
 make
 linux
