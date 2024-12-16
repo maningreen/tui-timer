@@ -20,4 +20,8 @@ make
 
 # dependancies
 
-ncurses, make and to be on linux
+you need:
+libnotify
+ncurses
+make
+linux
