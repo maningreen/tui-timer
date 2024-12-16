@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <math.h>
+#include <stdlib.h>
 
 #define secondHandChar '|'
 #define minuteHandChar '='
@@ -225,6 +226,9 @@ int main(int argc, char *argv[]) {
   }
 
   if(time == -1) {
+    printf("plese provide a time based argument:\n");
+    printf("eg:\n");
+    printf("./tui-timer -t 12:00 (12 minutes)");
     goto ret;
   }
 
@@ -282,6 +286,7 @@ int main(int argc, char *argv[]) {
         goto end;
     }
   }
+  goto giveNotification;
 notFancyLoop:
   int halfX, halfY;
   halfX = (maxX >> 1) - 1;
@@ -298,6 +303,8 @@ notFancyLoop:
         goto end;
     }
   }
+giveNotification:
+  system("notify-send \"Your timer is up!\"");
 end:
   endwin();
 ret:
