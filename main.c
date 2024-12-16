@@ -226,7 +226,7 @@ int main(int argc, char *argv[]) {
   }
 
   if(time == -1) {
-    printf("plese provide a time based argument:\n");
+    printf("please provide a time based argument:\n");
     printf("eg:\n");
     printf("./tui-timer -t 12:00 (12 minutes)");
     goto ret;
