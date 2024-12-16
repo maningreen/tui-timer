@@ -304,7 +304,7 @@ notFancyLoop:
     }
   }
 giveNotification:
-  system("notify-send \"Your timer is up!\"");
+  system("notify-send \"TIMER\" \"Your timer is up!\"");
 end:
   endwin();
 ret:
