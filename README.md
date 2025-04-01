@@ -1,27 +1,4 @@
 # tui-timer
 
-there are a *ton* of terminal based clocks out there, and i had no clue which was the best one,
-so i made my own. Its *intended* to be easy to use, simple, and customizable.
-
-# current progress
-
-currently its just missing some polish, maybe a digital function and time left being printed
-
-# how to compile and run
-just type in make in terminal and an excecutable should pop out
-
-excecute tui-timer after compiling, its in the directory
-
-eg:
-```
-make
-./tui-timer
-```
-
-# dependancies
-
-you need:
-libnotify (for notifications when timer ends)
-ncurses
-make
-linux
+# this is bad so i'm archiving it
+this will no longer be maintained looked at nor remembered (hopefully). I'm making another, so :)
